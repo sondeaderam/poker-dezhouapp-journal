@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德州扑克 – 快速了解与应用场景</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce5d7 0%, #f1d1b3 70%, #e5c1a0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.2rem;
+        }
+        .main-card {
+            max-width: 960px;
+            width: 100%;
+            background: #fffcf9;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(150, 90, 50, 0.18), 0 8px 16px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem 2.2rem;
+            transition: all 0.25s ease;
+        }
+        @media (max-width: 600px) {
+            .main-card {
+                padding: 1.8rem 1.3rem;
+                border-radius: 28px;
+            }
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #4d2b1a;
+            margin-bottom: 0.2em;
+            background: linear-gradient(135deg, #6d3f24, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .summary {
+            font-size: 1.08rem;
+            line-height: 1.6;
+            color: #3f281a;
+            margin-bottom: 2.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #f0dbca;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem 1.5rem;
+            margin: 1.8rem 0 2.5rem 0;
+        }
+        @media (max-width: 520px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+        .feature-item {
+            background: #faf1ea;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+            transition: background 0.2s;
+        }
+        .feature-item:hover {
+            background: #f6e7db;
+        }
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 520;
+            color: #5c3722;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .feature-item p {
+            font-size: 0.98rem;
+            color: #3d2a1b;
+            line-height: 1.5;
+        }
+        .usage-section {
+            background: #f9ece1;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .usage-section h2 {
+            font-size: 1.3rem;
+            font-weight: 540;
+            color: #5a3924;
+            margin-bottom: 1rem;
+        }
+        .usage-section ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+        .usage-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.7rem;
+            font-size: 1rem;
+            color: #3b271b;
+            line-height: 1.5;
+        }
+        .usage-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0.2rem;
+            color: #b47b58;
+            font-size: 1.3rem;
+        }
+        .faq-mini {
+            margin: 2rem 0 1.6rem 0;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 540;
+            color: #55331f;
+            margin-bottom: 0.25rem;
+            font-size: 1.02rem;
+        }
+        .faq-item p {
+            color: #3f2b1d;
+            font-size: 0.96rem;
+            line-height: 1.5;
+            margin-left: 0.3rem;
+        }
+        .link-sentence {
+            background: #f7eae0;
+            border-radius: 40px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 1.06rem;
+            line-height: 1.7;
+            color: #2f1e12;
+            text-align: center;
+        }
+        .link-sentence a {
+            color: #854f2b;
+            text-decoration: none;
+            font-weight: 520;
+            background: #ffffffd6;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            border: 1px solid #dbbca5;
+            display: inline-block;
+            margin: 0 0.15rem;
+            box-shadow: 0 2px 6px rgba(150, 80, 30, 0.06);
+        }
+        .link-sentence a:hover {
+            background: #ffffff;
+            border-color: #b28262;
+            box-shadow: 0 4px 10px rgba(150, 80, 30, 0.12);
+            transform: scale(1.02);
+        }
+        .disclaimer-note {
+            text-align: center;
+            font-size: 0.88rem;
+            color: #7e5f47;
+            border-top: 1px solid #ebd4c2;
+            padding-top: 1.4rem;
+            margin-top: 1rem;
+            letter-spacing: 0.01em;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e6cfbb;
+            margin: 1.2rem 0;
+        }
+        .muted-tip {
+            font-size: 0.95rem;
+            color: #4b3526;
+            background: #f5e7db;
+            border-radius: 40px;
+            padding: 0.8rem 1.5rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <h1>德州扑克 · 产品说明</h1>
+        <div class="summary">
+            如果你正在寻找一个关于<strong>德州扑克</strong>规则、策略或入门指引的集中页面，这里提供一份清晰的产品式摘要，帮助你快速判断这个网站是否对你有用。以下从核心亮点、适用场景到常见疑问做了简要整理。
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>♠️ 规则精要</h3>
+                <p>从手牌组合到下轮行动，网站对标准桌、锦标赛结构、位置与底池都给出了平实的梳理。适合刚接触或想修正细节的玩家。</p>
+            </div>
+            <div class="feature-item">
+                <h3>♥️ 场景适配</h3>
+                <p>无论你是准备和朋友组织家庭局，还是想了解线上平台的通用礼仪，这里的内容覆盖了多个常见使用场景。</p>
+            </div>
+            <div class="feature-item">
+                <h3>♦️ 策略视角</h3>
+                <p>不堆砌玄学，只提供概率、位置和读牌方面的基础建议。帮助你在牌局中形成自己的判断框架。</p>
+            </div>
+            <div class="feature-item">
+                <h3>♣️ 工具与参考</h3>
+                <p>包含手牌排名表、起手牌选择思路和简单的赔率计算示例。适合边学边查。</p>
+            </div>
+        </div>
+
+        <div class="usage-section">
+            <h2>📌 使用建议</h2>
+            <ul>
+                <li>如果你对术语还不太熟悉，可以先从“基本规则”和“术语表”两个栏目开始。</li>
+                <li>已经有基础的朋友，可以直接查看“翻前位置与范围”部分，对比自己的常用范围。</li>
+                <li>想快速和朋友开启一局，可以阅读“设置家庭局”指南，里面提到了一些实用的筹码分配和盲注结构。</li>
+                <li>所有内容均以中文呈现，没有复杂的长篇翻译痕迹，阅读负担较低。</li>
+            </ul>
+        </div>
+
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>这个网站适合完全零基础的人吗？</strong>
+                <p>是的。页面从手牌大小、行动顺序、牌型比大小开始讲起，不需要你有扑克经验。不过如果你从没接触过任何牌类游戏，可能需要稍微多花几分钟熟悉一下常见术语。</p>
+            </div>
+            <div class="faq-item">
+                <strong>我主要玩线上平台，内容有参考价值吗？</strong>
+                <p>网站内容不针对某个特定平台，但其中关于位置、加注尺度、底池赔率的概念在所有形式中都通用。你不需要改变自己的习惯也能找到有用的部分。</p>
+            </div>
+            <div class="faq-item">
+                <strong>是否需要注册或下载才能看到内容？</strong>
+                <p>不需要。所有介绍和说明都直接展示在页面上，没有隐藏内容，也没有强制注册或下载的要求。</p>
+            </div>
+        </div>
+
+        <!-- 嵌入链接的自然句子，可见文本严格等于“德州扑克” -->
+        <div class="link-sentence">
+            🃏 如果你打算系统了解或重温<strong>德州扑克</strong>，可以前往 
+            <a href="https://poker-dezhouapp.com">德州扑克</a> 
+            查看完整介绍与资料。
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.8rem;">
+            <div class="muted-tip">
+                ✦ 每日更新频率：约每月1~2次内容补充
+            </div>
+            <div style="font-size: 0.9rem; color: #6e4e37; background: #f1e3d6; border-radius: 40px; padding: 0.6rem 1.3rem;">
+                ⏳ 页面最后调整：2025-03
+            </div>
+        </div>
+
+        <hr>
+        <div class="disclaimer-note">
+            本页仅为产品说明摘要，所有信息仅供参考。实际使用时请结合个人判断。<br>
+            不构成任何形式的投资、赌博或财务建议。
+        </div>
+    </div>
+</body>
+</html>
